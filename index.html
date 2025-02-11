@@ -1,10 +1,35 @@
 <!DOCTYPE html>
 <html dir="rtl">
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Steganography Pro - الأداة الاحترافية لإخفاء وكشف النصوص</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        @media (max-width: 768px) {
+    .center-alert, .floating-alert {
+        font-size: 0.9em;
+        padding: 15px;
+    }
+    
+    .center-alert i {
+        font-size: 1.2em !important;
+    }
+    
+    .floating-alert {
+        bottom: 20px;
+        transform: translateX(-50%);
+    }
+}
+        /* تحسينات إضافية للخط العربي */
+body {
+    font-family: 'Cairo', sans-serif !important;
+    line-height: 1.8; /* زيادة تباعد الأسق للمحارف العربية */
+}
+
+input, textarea, button {
+    font-family: 'Cairo', sans-serif !important;
+}
         /* بداية أنماط حقوق الملكية */
 .vip-footer {
     position: relative;
@@ -135,11 +160,11 @@
         }
 
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', Arial, sans-serif;
-        }
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cairo', Arial, sans-serif;
+}
 
         body {
             background: var(--gradient);
@@ -422,36 +447,46 @@
         }
 
         .floating-alert {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-            animation: alertSlide 0.5s ease;
-        }
+    position: fixed;
+    bottom: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    margin: 0 auto;
+    z-index: 9999;
+    animation: alertSlideMobile 0.5s ease;
+}
+
+@keyframes alertSlideMobile {
+    from { bottom: -100px; opacity: 0; }
+    to { bottom: 50%; opacity: 1; }
+}
 
         @keyframes alertSlide {
             from { transform: translateX(100%); }
             to { transform: translateX(0); }
         }
 
-        .center-alert {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
-            border: 2px solid var(--error);
-            border-radius: 15px;
-            padding: 25px 40px;
-            box-shadow: 0 0 30px rgba(221, 44, 0, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 1.2em;
-            z-index: 1001;
-            animation: alertFade 0.5s ease;
-            opacity: 0;
-        }
+        /* داخل الـ style */
+.center-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(221, 44, 0, 0.9);
+    color: #fff;
+    font-size: 1.1em;
+    z-index: 9999;
+    animation: alertFade 0.5s ease;
+    transition: opacity 0.3s ease;
+}
 
         @keyframes alertFade {
             0% { opacity: 0; transform: translate(-50%, -60%); }
@@ -828,35 +863,35 @@
         }
 
         function showAlert(message, type) {
-            const alertBox = document.createElement('div');
-            alertBox.className = `vip-alert floating-alert`;
-            alertBox.innerHTML = `
-                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-triangle'}"></i>
-                ${message}
-            `;
-            document.body.appendChild(alertBox);
-            
-            setTimeout(() => {
-                alertBox.style.transform = 'translateY(100px)';
-                setTimeout(() => alertBox.remove(), 500);
-            }, 2500);
-        }
+    const alertBox = document.createElement('div');
+    alertBox.className = `vip-alert floating-alert`;
+    alertBox.innerHTML = `
+        <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-triangle'}"></i>
+        ${message}
+    `;
+    document.body.appendChild(alertBox);
+    
+    setTimeout(() => {
+        alertBox.style.opacity = '0';
+        setTimeout(() => alertBox.remove(), 500);
+    }, 2500);
+}
 
-        function showCenteredAlert(message, type) {
-            const alertBox = document.createElement('div');
-            alertBox.className = `center-alert`;
-            alertBox.innerHTML = `
-                <i class="fas fa-exclamation-triangle"></i>
-                ${message}
-            `;
-            alertBox.style.color = `var(--${type})`;
-            document.body.appendChild(alertBox);
-            
-            setTimeout(() => {
-                alertBox.style.opacity = '0';
-                setTimeout(() => alertBox.remove(), 500);
-            }, 2000);
-        }
+        // داخل الـ script
+function showCenteredAlert(message, type) {
+    const alertBox = document.createElement('div');
+    alertBox.className = `center-alert`;
+    alertBox.innerHTML = `
+        <i class="fas fa-exclamation-triangle"></i>
+        ${message}
+    `;
+    document.body.appendChild(alertBox);
+    
+    setTimeout(() => {
+        alertBox.style.opacity = '0';
+        setTimeout(() => alertBox.remove(), 500);
+    }, 2000); // 2000 مللي ثانية = 2 ثانية
+}
     </script>
 </body>
 </html>
