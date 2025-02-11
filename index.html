@@ -5,6 +5,124 @@
     <title>Steganography Pro - الأداة الاحترافية لإخفاء وكشف النصوص</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        /* بداية أنماط حقوق الملكية */
+.vip-footer {
+    position: relative;
+    margin-top: 50px;
+    padding: 25px 0;
+    background: linear-gradient(145deg, 
+        rgba(42, 42, 42, 0.95) 0%, 
+        rgba(30, 30, 30, 0.97) 100%);
+    border-radius: 18px 18px 0 0;
+    border: 1px solid rgba(255, 215, 0, 0.15);
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.4);
+    backdrop-filter: blur(12px);
+    overflow: hidden;
+}
+
+.copyright-glare {
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 140%;
+    height: 200%;
+    background: linear-gradient(45deg,
+        rgba(255,215,0,0.03) 0%,
+        rgba(255,215,0,0.01) 50%,
+        rgba(255,215,0,0.03) 100%);
+    transform: rotate(-20deg);
+    pointer-events: none;
+}
+
+.copyright-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    padding: 0 30px;
+}
+
+.crown-icon {
+    position: relative;
+    font-size: 2.2em;
+    color: var(--accent-color);
+    animation: crownFloat 3s ease-in-out infinite;
+}
+
+.crown-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, 
+        rgba(255,215,0,0.3) 0%, 
+        transparent 70%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.copyright-text {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.1em;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.highlight {
+    background: linear-gradient(45deg, #FFD700, #FFAA00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+}
+
+.divider {
+    color: rgba(255,215,0,0.4);
+    font-weight: 300;
+}
+
+.diamond-grid {
+    display: flex;
+    gap: 12px;
+}
+
+.diamond {
+    width: 8px;
+    height: 8px;
+    background: var(--accent-color);
+    transform: rotate(45deg);
+    opacity: 0.6;
+    animation: diamondSparkle 1.5s ease-in-out infinite;
+}
+
+.diamond:nth-child(2) { animation-delay: 0.3s; }
+.diamond:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes crownFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes diamondSparkle {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; box-shadow: 0 0 8px rgba(255,215,0,0.5); }
+}
+
+@media (max-width: 768px) {
+    .copyright-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .divider {
+        display: none;
+    }
+}
+/* نهاية أنماط حقوق الملكية */
         :root {
             --primary-color: #2A2A2A;
             --accent-color: #FFD700;
@@ -441,6 +559,25 @@
         </div>
 
         <canvas id="canvas" style="display: none;"></canvas>
+         <footer class="vip-footer">
+        <div class="copyright-glare"></div>
+        <div class="copyright-content">
+            <div class="crown-icon">
+                <i class="fas fa-crown"></i>
+                <div class="crown-glow"></div>
+            </div>
+            <div class="copyright-text">
+                <span class="highlight">© 2024 Steganography Pro</span>
+                <span class="divider">|</span>
+                <span>جميع الحقوق محفوظة تحت رخصة الذهب الدولي</span>
+            </div>
+            <div class="diamond-grid">
+                <div class="diamond"></div>
+                <div class="diamond"></div>
+                <div class="diamond"></div>
+            </div>
+        </div>
+    </footer>
     </div>
 
     <script>
